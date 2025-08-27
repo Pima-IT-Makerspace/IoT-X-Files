@@ -136,6 +136,7 @@ void handleHTML() {
         gamepadInfo = document.getElementById("gamepad-info");
 
         //Lets us see what gamepad is connected
+        //This comment was to test source control
         window.addEventListener("gamepadconnected", function(e) {
           var gp = e.gamepad;
           gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
