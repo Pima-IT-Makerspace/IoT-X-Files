@@ -59,6 +59,7 @@ void handleHTML() {
 
     <script>
       var CurrentSpeed = 0;
+      
       // Allows our functions to be called through our buttons
       function moveForward() { fetch('/forward'); }
       function moveLeft() { fetch('/left'); }
@@ -74,15 +75,6 @@ void handleHTML() {
       }
 
       var gamepadInfo;
-
-      //Returns a true or false if a button is pressed on the gamepad
-      function buttonPressed(b) {
-        if (typeof(b) == "object") {
-          
-          return b.pressed;
-        }
-        return b == 1.0;
-      }
       
       // A function to handle button presses and send commands
       function handleGamepadInput() {
@@ -96,38 +88,39 @@ void handleHTML() {
         // Check for button presses and send commands Need to make this either on hold, or reduce speed or increase on another button1
         //Why isn't this a for loop?
         // for (let button = 0; button < gp.buttons.length; button++) {
-        //   if (buttonPressed(gp.buttons[button])) {
+        //   if (gp.buttons[button].pressed) {
         //     buttonInfo.innerHTML = "button pressed " + button;
         //     break;
         //   }
         // }
-        if (buttonPressed(gp.buttons[0])) { // A button
+        if (gp.buttons[0].pressed) { // A button
           moveReverse();
           buttonInfo.innerHTML = "Reverse ";
-        } else if (buttonPressed(gp.buttons[1])) { // B button
+        } else if (gp.buttons[1].pressed) { // B button
           moveRight();
           buttonInfo.innerHTML = "Right ";
-        } else if (buttonPressed(gp.buttons[2])) { // X button
+        } else if (gp.buttons[2].pressed) { // X button
           moveForward();
           buttonInfo.innerHTML = "Forward ";
-        } else if (buttonPressed(gp.buttons[3])) { // Y button
+        } else if (gp.buttons[3].pressed) { // Y button
           moveLeft();
           buttonInfo.innerHTML = "Left";
         } 
-        else if (buttonPressed(gp.buttons[5])) { //RT
-          if(CurrentSpeed <= 200)
+        else if (gp.buttons[5].touched) { //RT
+          if(CurrentSpeed <= 475)
           {
             CurrentSpeed += 25;
             fetch(`/speed?value=${CurrentSpeed}`);
             buttonInfo.innerHTML = "Speed at " + CurrentSpeed;
-          } else
-          {
-            buttonInfo.innerHTML = "Stop you are already at 200" + CurrentSpeed;
           }
         }
-        else if (buttonPressed(gp.buttons[4])){
-          CurrentSpeed -= 25;
-          fetch(`/speed?value=${CurrentSpeed}`);
+        else if (gp.buttons[4].touched){
+          if(CurrentSpeed >= 25)
+          {
+            CurrentSpeed -= 25;
+            fetch(`/speed?value=${CurrentSpeed}`);
+            buttonInfo.innerHTML = "Speed at " + CurrentSpeed;
+          }        
         }
       }
       
@@ -135,8 +128,6 @@ void handleHTML() {
       window.onload = function() {
         gamepadInfo = document.getElementById("gamepad-info");
 
-        //Lets us see what gamepad is connected
-        //This comment was to test source control
         window.addEventListener("gamepadconnected", function(e) {
           var gp = e.gamepad;
           gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
@@ -167,8 +158,6 @@ void handleHTML() {
         //Modifying this will change the amount of get requests used for checking if the button is pressed or not. 
         //If an on hold effect is wanted, we'd want this value to be very low and constantly sending requests, however this will fluff network traffic
         //Maybe use an if statement to limit this function from sending multiple requests
-        
-        //This is used to query the cars controller input at a set interval.
         var Controllerinterval = setInterval(handleGamepadInput, 100);
       };
     </script>
@@ -234,7 +223,7 @@ void handleSpeed() {
       digitalWrite(motor2Pin1, LOW);
       digitalWrite(motor2Pin2, LOW);
     } else {
-      dutyCycle = map(value, 25, 200, 200, 255);
+      dutyCycle = map(value, 25, 500, 150, 255);
       ledcWrite(enable1Pin, dutyCycle);
       ledcWrite(enable2Pin, dutyCycle);
       Serial.println("Motor speed set to " + String(value));
