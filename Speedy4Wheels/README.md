@@ -1,0 +1,1 @@
+Some errors that may be encountered during reconstruction of this, is that the motor board's sometimes need power to the 5v slot as well from the esp-32, because the 5v slot controls the logic functions. There was however an anaomly as one out of the many boards was able to just use the 12v, and function normally.
