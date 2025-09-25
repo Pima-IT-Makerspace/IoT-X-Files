@@ -14,12 +14,14 @@ However, the downside is that if we put the full 12V to the motor board, it will
 
 3.) In your browser, Type in the IP address. (IMPORTANT) Type in HTTP:// specifically, because if you don't, the browser likes to default to https, and nothing will show up.
 
-4.) Once the page is displayed, the buttons work, but its speed scale may not be a high enough value to actually make your motors spin.
+4.) Once the page is displayed, the buttons work, but the speed scale may not be a high enough value to actually make your motors spin.
 
-5.) So for a more effective experience, plug in some type of controller, we have tons of gamepads, but any should work. - Speed is controlled by the left and right triggers, left being to decrease speed, right being to increase it. - Direction is controlled by the face button letters, like X,A,B,Y.
+5.) So, for a more effective experience, plug in some type of controller; we have tons of gamepads, but any should work. - Speed is controlled by the left and right triggers, left being to decrease speed, right being to increase it. - Direction is controlled by the face button letters, like X,A,B,Y.
 
-6.) Drive mr speedy and enjoy.
+6.) Drive Mr. Speedy and enjoy.
 
 ****Extra:****
 
 Many variables can be changed to your liking, like the speed curve can be increased or decreased with the map function.
+
+MORE VOLTAGE ==== MORE POWWWWEEER! Sorta. Increasing the voltage up to 12v seems fine, will make the wheels spin way faster, and this can be done by connecting multiple batteries in series. Just try not to 
