@@ -20,6 +20,6 @@ However, the downside is that if we put the full 12V to the motor board, it will
 
 6.) Drive mr speedy and enjoy.
 
-****Extra: ****
+****Extra:****
 
 Many variables can be changed to your liking, like the speed curve can be increased or decreased with the map function.
