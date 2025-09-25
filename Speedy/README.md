@@ -1,12 +1,12 @@
 Wifi car controlled by a gamepad, supports most controllers, tested on xbox controller.
 
-Errors / Problems:
+**Errors / Problems:**
 
 Some errors that may be encountered during reconstruction of this are that the motor boards sometimes need power to the 5V slot as well from the ESP-32 (VIN) because the 5V slot on the motorboard controls the logic functions. There was, however, an anomaly, as one out of the many boards was able to just use the 12V and function normally.
 
 However, the downside is that if we put the full 12V to the motor board, it will fry the ESP-32. This is because the 12v's don't seem to be stepped down to the 5v port, and therefore sends too much.
 
-Instructions:
+**Instructions:**
 
 1.) Set up the wifi details in the code to the network you are planning to connect to.
 
@@ -20,6 +20,6 @@ Instructions:
 
 6.) Drive mr speedy and enjoy.
 
-**Extra: **
+****Extra: ****
 
 Many variables can be changed to your liking, like the speed curve can be increased or decreased with the map function.
